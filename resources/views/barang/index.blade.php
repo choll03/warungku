@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Data Barang</div>
+                <div class="card-header">Data Barang <a href="{{ route('barang.create') }}" class="btn btn-success float-right">Tambah</a></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -34,6 +34,7 @@
 
 @section('script')
     <script>
+
         $(function(){
             $("#table_barang").DataTable({
                 processing: true,
