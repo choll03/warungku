@@ -169,6 +169,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -232,6 +234,8 @@ return [
         'Form'=> Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

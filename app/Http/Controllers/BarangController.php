@@ -89,7 +89,11 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = auth()->user();
+
+        $barang = $user->barang()->find($id);
+        
+        return view('barang.edit', ['data' => $barang]);
     }
 
     /**
@@ -99,9 +103,15 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BarangFormRequest $request, $id)
     {
-        //
+        
+        $user = auth()->user();
+
+        $user->barang()->find($id)->update($request->all());
+
+        session()->flash('status', 'Barang berhasil di ubah');
+        return redirect(route('barang.index'));
     }
 
     /**
