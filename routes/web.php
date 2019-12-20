@@ -18,6 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/cart','CartController@index')->name('cart.index');
+    Route::post('/cart','CartController@add')->name('cart.add');
+    Route::post('/cart/conditions','CartController@addCondition')->name('cart.addCondition');
+    Route::delete('/cart/conditions','CartController@clearCartConditions')->name('cart.clearCartConditions');
+    Route::get('/cart/details','CartController@details')->name('cart.details');
+    Route::delete('/cart/{id}','CartController@delete')->name('cart.delete');
     
     Route::get('/get_barang', 'BarangController@getData')->name('getBarang');
     Route::get('/get_barang_transaksi', 'TransaksiController@getData')->name('getBarangForTransaksi');

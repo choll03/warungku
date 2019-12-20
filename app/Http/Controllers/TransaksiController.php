@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-Use Alert;
+// Use Alert;
 
 class TransaksiController extends Controller
 {
     public function index()
     {
-        Alert::alert('Title', 'Message', 'Type');
         return view('transaksi.index');
     }
 
@@ -21,7 +20,8 @@ class TransaksiController extends Controller
         return Datatables::of($user->barang)
         ->addColumn('actions', function ($data) {
             return '
-                <a href="'. route('barang.edit', $data->id) .'" class="btn btn-sm btn-primary">Order</a>
+                <button type="button" class="increment btn btn-sm btn-success" data-barang='. var_export(json_encode($data), true) .' >+</button>
+                <button type="button" class="decrement btn btn-sm btn-danger" data-barang='. var_export(json_encode($data), true) .'>-</button>
             ';
         })
         ->rawColumns(['actions'])
