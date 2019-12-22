@@ -47,4 +47,10 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough('\App\Model\Barang', '\App\Model\Warung');
     }
+
+
+    public function invoice()
+    {
+        return $this->hasMany('\App\Model\Invoice');
+    }
 }

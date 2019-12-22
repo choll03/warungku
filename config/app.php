@@ -171,6 +171,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,6 +237,7 @@ return [
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
