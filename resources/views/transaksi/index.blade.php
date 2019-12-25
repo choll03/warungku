@@ -1,16 +1,35 @@
 @extends('layouts.app')
 
-@section('content')
+@section('style')
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">
 <style>
     .print-only{
         display: none;
     }
 </style>
+@endsection
+
+@section('content')
+
+<div class="content-wrapper">
+<section class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Transaksi</h1>
+        </div>  
+    </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Stok barang</div>
+                <div class="card-header">Buat Transaksi</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -64,13 +83,14 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/print.js') }}"></script>
     <script>
         var _token = "{{csrf_token()}}";
 
         $(function(){
-            
             var table = $("#table_barang").DataTable({
                 processing: true,
                 serverSide: true,
@@ -101,15 +121,17 @@
                         var id = data.id;
                         var qty = 1;
                         var harga = data.harga_jual;
+                        var harga_beli = data.harga_beli;
 
                         $("#keranjang").append(`
                             <tr id="row_${id}">
                                 <td>${data.nama}</td>
                                 <input type="hidden" value="${data.nama}" name="nama[${id}]"/>
-                                <td id="view_qty_${id}" align="right">${qty}</td>
+                                <td id="view_qty_${id}" align="center">${qty}</td>
                                 <input type="hidden" value="${qty}" name="qty[${id}]" id="qty_${id}"/>
                                 <td id="view_harga_${id}" align="right">${harga}</td>
                                 <input type="hidden" value="${harga}" name="harga[${id}]" id="harga_${id}"/>
+                                <input type="hidden" value="${harga_beli}" name="harga_beli[${id}]" id="harga_beli_${id}"/>
                             </tr>
                         `);
                     }
@@ -192,10 +214,13 @@
                             'method' : 'POST',
                             'data': _this.serialize() + "&tunai=" + result.value,
                             success: function(data){
+                                $("#keranjang").html("");
+                                $("#total").html(0);
+                                total=0;
                                 Swal.fire({
                                     title: 'Berhasil!',
                                     text: data.message,
-                                    icon: 'success',
+                                    type: 'success',
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',
                                     confirmButtonText: 'Print',
@@ -206,15 +231,15 @@
                                         $.ajax({
                                             url: '{{route("transaksi")}}' + "/print/" + data.data.id,
                                             method: 'GET',
-                                            success: function (print_data){
-                                                $('#print-area').html(print_data);
-                                            },
-                                            complete: function () {
-                                                printJS({
-                                                    printable: 'print-area', 
-                                                    type: 'html'
-                                                });
-                                            }
+                                            // success: function (print_data){
+                                            //     $('#print-area').html(print_data);
+                                            // },
+                                            // complete: function () {
+                                            //     printJS({
+                                            //         printable: 'print-area', 
+                                            //         type: 'html'
+                                            //     });
+                                            // }
                                         });
                                     }
                                 })

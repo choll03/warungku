@@ -3,12 +3,14 @@
     html, body {
         display: block; 
         font-family:"Courier New", Courier, monospace;
-        margin: 0;
+        margin: 0 10px;
         font-size:12px;
     }
 
     @page {
-      size: 57mm 50mm;
+      /* size: 57mm 50mm; */
+        /* width: 57mm;
+        height: 57mm; */
     }
 
     .logo {
@@ -43,10 +45,6 @@
         <td>Tanggal</td>
         <td align="right">{{ $invoice->created_at->format("d/M/Y") }}</td>
     </tr>
-    <tr>
-        <td>Jam</td>
-        <td align="right">{{ $invoice->created_at->format("H:i:s") }}</td>
-    </tr>
 </table>
 <hr>
 <table width="100%">
@@ -72,5 +70,14 @@
     <tr>
         <td align="right">Kembali</td>
         <td align="right">{{ $invoice->tunai - $total }}</td>
+    </tr>
+</table>
+<br>
+<table style="text-align:center;width:100%">
+    <tr>
+        <td>Terima kasih sudah berbelanja di {{ strtoupper($warung->nama) }}</td>
+    </tr>
+    <tr>
+        <td>{{ $date }}</td>
     </tr>
 </table>

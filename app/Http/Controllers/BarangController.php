@@ -25,12 +25,14 @@ class BarangController extends Controller
         return Datatables::of($user->barang)
         ->addColumn('actions', function ($data) {
             return '
-                <a href="'. route('barang.edit', $data->id) .'" class="btn btn-sm btn-primary">Edit</a>
+                <div style="display:flex;justify-content: center;">
+                <a href="'. route('barang.edit', $data->id) .'" class="btn btn-sm btn-primary">Edit</a>&nbsp;
                 <form action="'. route('barang.destroy', $data->id) .'" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="'. csrf_token() .'">
                     <button class="btn btn-sm btn-danger" onclick="return confirm('. var_export("Anda yakin ingin menghapus barang ini?", true) .')">Hapus</button>
                 </form>
+                </div>
             ';
         })
         ->rawColumns(['actions'])

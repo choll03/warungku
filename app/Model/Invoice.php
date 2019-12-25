@@ -12,4 +12,9 @@ class Invoice extends Model
     {
         return $this->hasMany('App\Model\Invoice_detail');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
