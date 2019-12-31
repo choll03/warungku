@@ -27,7 +27,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 col-12">
             <div class="card">
                 <div class="card-header">Buat Transaksi</div>
 
@@ -37,21 +37,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table id="table_barang" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="table_barang" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-12">
             <div class="card">
                 <div class="card-header">Keranjang</div>
                 <div class="card-body">

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{  asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{  asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{  asset('dist/css/style.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     @yield('style')
@@ -61,8 +62,8 @@
   <aside class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link">
-      <img src="{{ asset('dist/img/logo.png') }}" alt="Warungku" 
-          class="brand-image elevation-3"
+      <img class="logo-menu ml-2 img-circle elevation-3" src="{{ asset('dist/img/logo-bg.png') }}" alt="Warungku" 
+        
           style="opacity: .8"
            >
       <span class="brand-text font-weight-light"><b>WARUNG</b>KU</span>
@@ -124,15 +125,31 @@
                 </a>
               </li>
               </ul>
+          </li>
 
-            <li class="nav-item">
-              <a href="{{ route('laporan') }}" class="nav-link">
-                <i class="nav-icon fas fa-receipt"></i>
-                <p>
-                  Laporan Penjualan
-                </p>
-              </a>
-            </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-receipt"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('laporan') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Penjualan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Keuntungan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
             <li class="nav-item">
               <a  href="{{ route('warung.index') }}" class="nav-link">
