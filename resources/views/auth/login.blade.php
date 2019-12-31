@@ -3,9 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
+            <div class="logo-head "> 
+                <img class=" logo-login img-circle elevation-3" src="{{ asset('dist/img/logo-bg.png') }}" alt="Warungku">
+            </div>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header bg-info"><b>{{ __('LOGIN') }}</b></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -53,10 +56,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-info">
                                     {{ __('Login') }}
                                 </button>
-                                <span>Belum punya akun?</span><a class="btn btn-link" href="{{ route('register') }}">
+                                <span>Belum punya akun?</span><a class=" btn-link" href="{{ route('register') }}">
                                 {{ __('Register') }}
                                 </a>
                                 <!-- @if (Route::has('password.request'))
