@@ -94,7 +94,7 @@
         $(function(){
             var table = $("#table_barang").DataTable({
                 processing: true,
-                serverSide: true,
+                // serverSide: true,
                 ajax: {
                     url : '{{ route("getBarangForTransaksi") }}'
                 },
@@ -202,52 +202,56 @@
             $("#buat_transaksi").submit(function(e){
                 e.preventDefault();
                 var _this = $(this);
-                
-                
-                Swal.fire({
-                    input: 'text',
-                    inputPlaceholder: 'Masukan uang tunai',
-                })
-                .then(function(result){
-                    if(result.value){
-                        $.ajax({
-                            'url' : "{{route('transaksi.store')}}",
-                            'method' : 'POST',
-                            'data': _this.serialize() + "&tunai=" + result.value,
-                            success: function(data){
-                                $("#keranjang").html("");
-                                $("#total").html(0);
-                                total=0;
-                                Swal.fire({
-                                    title: 'Berhasil!',
-                                    text: data.message,
-                                    type: 'success',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    confirmButtonText: 'Print',
-                                    cancelButtonText: 'Print nanti'
-                                })
-                                .then(function(result2){
-                                    if(result2.value){
-                                        $.ajax({
-                                            url: '{{route("transaksi")}}' + "/print/" + data.data.id,
-                                            method: 'GET',
-                                            // success: function (print_data){
-                                            //     $('#print-area').html(print_data);
-                                            // },
-                                            // complete: function () {
-                                            //     printJS({
-                                            //         printable: 'print-area', 
-                                            //         type: 'html'
-                                            //     });
-                                            // }
-                                        });
-                                    }
-                                })
+                if(parseInt(total) <= 0){
+                    Swal.fire({text: "Keranjang kosong!", title: "Opps"});
+                }
+                else{
+                    Swal.fire({
+                        input: 'text',
+                        inputPlaceholder: 'Masukan uang tunai',
+                    })
+                    .then(function(result){
+                        if(result.value){
+                            if(parseInt(result.value) < parseInt(total)){
+                                Swal.fire({text: "Jumlah uang yang dibayar kurang!", title: "Opps"});
                             }
-                        });
-                    }
-                })
+                            else{
+
+                                /** @Start Transaksi */
+                                $.ajax({
+                                    'url' : "{{route('transaksi.store')}}",
+                                    'method' : 'POST',
+                                    'data': _this.serialize() + "&tunai=" + result.value,
+                                    success: function(data){
+                                        $("#keranjang").html("");
+                                        $("#total").html(0);
+                                        total=0;
+                                        Swal.fire({
+                                            title: 'Berhasil!',
+                                            text: data.message,
+                                            type: 'success',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'Print',
+                                            cancelButtonText: 'Print nanti',
+                                            footer: `<a href="{{route('laporan')}}/transaksi/${data.data.id}">Lihat detail?</a>`
+                                        })
+                                        .then(function(result2){
+                                            if(result2.value){
+                                                $.ajax({
+                                                    url: '{{route("transaksi")}}' + "/print/" + data.data.id,
+                                                    method: 'GET'
+                                                });
+                                            }
+                                        })
+                                    }
+                                });
+
+                                /**@END Transaksi */
+                            }
+                        }
+                    })
+                }
                 
             });
         })

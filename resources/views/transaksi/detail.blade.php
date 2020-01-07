@@ -84,7 +84,7 @@
                     
                 </div>
                 <div class="card-footer" style="text-align:right">
-                    <button class="btn btn-primary">Print Struk</button>
+                    <button class="btn btn-primary" id="print">Print Struk</button>
                     <button class="btn btn-primary" id="print_preview">Print Preview</button>
                     
                     <div class="row my-4">
@@ -106,8 +106,20 @@
 @section('script')
     <script src="{{ asset('js/print.js') }}"></script>
     <script>
+        var id = {{ $data->id }};
         $(function(){
-             $("#print_preview").on('click', function(e) {
+            $("#print").on('click', function(e) {
+                $.ajax({
+                    url: '{{route("transaksi")}}' + "/print/" + id,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log("oke");
+                    }
+                });
+            });
+
+
+            $("#print_preview").on('click', function(e) {
                 $.ajax({
                     url: '{{route("transaksi.print_preview", $data->id)}}',
                     method: 'GET',
@@ -121,7 +133,7 @@
                         });
                     }
                 });
-             });
+            });
         })
     </script>
 @endsection

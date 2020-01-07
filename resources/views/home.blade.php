@@ -133,8 +133,6 @@
             <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">Rp. 2.500.000</span>
-                    <span>Total Omset</span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -144,13 +142,6 @@
                 </div>
 
                 <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-success"></i> Omset
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-danger"></i> Keuntungan
-                  </span>
                 </div>
               </div>
             </div>
@@ -181,25 +172,19 @@
         var salesChart  = new Chart($salesChart, {
             type   : 'bar',
             data   : {
-                labels  : ['JAN', 'FEB', 'MAR', 'APR', 'MEI', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+                labels  : <?php echo json_encode($data['label']) ?>,
                 datasets: [
                     {
                         backgroundColor: '#007bff',
                         borderColor    : '#007bff',
-                        data           : [1000, 2000, 3000, 2500, 2700, 2500, 3000]
-                    },
-                    {
-                        backgroundColor: '#ced4da',
-                        borderColor    : '#ced4da',
-                        data           : [700, 1700, 2700, 2000, 1800, 1500, 2000]
+                        data           : <?php echo json_encode($data['dataset']) ?>
                     }
                 ]
             },
             options: {
                 maintainAspectRatio: false,
                 tooltips           : {
-                    mode     : mode,
-                    intersect: intersect
+                    mode     : mode
                 },
                 hover              : {
                     mode     : mode,
@@ -210,7 +195,7 @@
                 },
                 scales             : {
                     yAxes: [{
-                    // display: false,
+                    display: false,
                     gridLines: {
                         display      : true,
                         lineWidth    : '4px',
@@ -226,7 +211,7 @@
                             value /= 1000
                             value += 'k'
                         }
-                        return '$' + value
+                        return value
                         }
                     }, ticksStyle)
                     }],

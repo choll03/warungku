@@ -8,6 +8,8 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+use App\Model\Invoice_detail;
+
 class HomeController extends Controller
 {
     /**
@@ -34,13 +36,34 @@ class HomeController extends Controller
         $modal_today = $user->invoice()->whereDate('created_at', Carbon::today())->sum(DB::raw('(SELECT SUM(harga_beli*qty) FROM invoice_details WHERE invoice_details.invoice_id = invoices.id)'));
 
 
+        $label = [];
+        $dataset = [];
+        $user_id = $user->id;
+        $invoice_detail = Invoice_detail::selectRaw('invoice_details.nama, SUM(qty * harga) as total')
+        ->whereHas('invoice', function($q) use ($user_id){
+            $q->where('user_id', $user_id);
+            $q->whereDate('created_at', Carbon::today());
+        })
+        ->orderBy('nama')
+        ->groupBy('barang_id')
+        ->limit(5)
+        ->get();
+
+        foreach($invoice_detail as $detail)
+        {
+            $label[] = $detail->nama;
+            $dataset[] = $detail->total;
+        }
+
         $stok_limit = $user->warung->barang()->where('stok', '<', 4)->get();
         $data = [
-            'omset' => $omset,
-            'untung' => $omset - $modal,
-            'omset_today' => $omset_today,
-            'untung_today' => $omset_today - $modal_today,
-            'stok_limit'    => $stok_limit
+            'omset'         => $omset,
+            'untung'        => $omset - $modal,
+            'omset_today'   => $omset_today,
+            'untung_today'  => $omset_today - $modal_today,
+            'stok_limit'    => $stok_limit,
+            'label'         => $label,
+            'dataset'       => $dataset
         ];
 
         return view('home', ['data'=> $data]);

@@ -20,8 +20,8 @@ class Item
         $col = 10;
 
         $name = str_pad($this->name, $col) ;
-        $qty = str_pad($this->price, $col, ' ', STR_PAD_LEFT);
-        $price = str_pad($this->qty, $col, ' ', STR_PAD_LEFT);
+        $qty = str_pad($this->qty, $col, ' ', STR_PAD_LEFT);
+        $price = str_pad($this->price, $col, ' ', STR_PAD_LEFT);
         return "$name$qty$price\n";
     }
 }

@@ -12,4 +12,9 @@ class Invoice_detail extends Model
     {
         return $this->belongsTo('App\Model\Barang');
     }
+
+    public function invoice()
+    {
+        return $this->belongsTo('App\Model\Invoice');
+    }
 }
