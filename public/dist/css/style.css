@@ -1,3 +1,4 @@
+/* LOGIN */
 .logo-login{
     width: 30%;
     align-items: center;
@@ -8,7 +9,24 @@
 .logo-head{
     background: transparent;
 }
+.form-login{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+
+/* Table */
 .logo-menu{
-    width: 50px;
+    width: 45px;
     height: 40px;
+}
+table{
+    text-align: center;
+}
+table .int{
+    text-align: right;
+}
+table .hasil{
+    font-weight: bold;
 }

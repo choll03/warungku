@@ -19,7 +19,7 @@
     <div class="col-12">
       <!-- Default box -->
       <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-info">
           <h3 class="card-title">Tambah Barang</h3>
 
           <div class="card-tools">
@@ -53,7 +53,8 @@
                     {!! Form::label('stok', 'Stok') !!}
                     {!! Form::text('stok', null, ['class' => 'form-control']) !!}
                 </div>
-                {!! Form::submit('Buat', ['class' => 'btn btn-primary float-right']) !!}
+    
+                {!! Form::submit('Tambah', ['class' => 'btn btn-info float-right']) !!}
 
             {!! Form::close() !!}
             

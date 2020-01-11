@@ -102,6 +102,18 @@ class TransaksiController extends Controller
         return view('transaksi.laporan', ['data' => $invoice]);
     }
 
+    public function laporankeuntungan()
+    {
+        $user = auth()->user();
+
+        $invoice = $user->invoice()
+                    ->selectRaw('invoices.*, (SELECT SUM(harga * qty) FROM invoice_details WHERE invoice_details.invoice_id = invoices.id) as total')
+                    ->latest()
+                    ->get();
+
+        return view('transaksi.laporan_keuntungan', ['data' => $invoice]);
+    }
+
     public function laporanShow($id)
     {
         $invoice = auth()->user()->invoice()->with('detail')->where('id', $id)->first();

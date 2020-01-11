@@ -19,7 +19,7 @@
     <div class="col-12">
       <!-- Default box -->
       <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-info">
           <h3 class="card-title">Edit Warung</h3>
 
           <div class="card-tools">
@@ -45,7 +45,7 @@
                     {!! Form::label('alamat', 'Alamat') !!}
                     {!! Form::textarea('alamat', $data->alamat, ['class' => 'form-control', 'rows' => 3]) !!}
                 </div>
-                {!! Form::submit('Ubah', ['class' => 'btn btn-primary float-right']) !!}
+                {!! Form::submit('Ubah', ['class' => 'btn btn-info float-right']) !!}
 
             {!! Form::close() !!}
             

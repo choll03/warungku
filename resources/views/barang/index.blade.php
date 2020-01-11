@@ -10,7 +10,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Warungku</h1>
+            <h1>Stok Barang</h1>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -23,7 +23,7 @@
     <div class="col-12">
       <!-- Default box -->
       <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-info">
           <h3 class="card-title">List Barang</h3>
 
           <div class="card-tools">
@@ -33,13 +33,14 @@
               <i class="fas fa-times"></i></button>
           </div>
         </div>
+        <div class="table-responsive">
         <div class="card-body">
             @if (session('status'))
                 <div class="alert alert-info" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
-
+            
             <table id="table_barang" class="table table-striped table-bordered">
                 <thead>
                 <tr>
@@ -49,10 +50,11 @@
                     <th>Stok</th>
                     <th>Action</th>
                 </tr>
-            </thead>
+                </thead>
             </table>
+            </div>
         </div>
-        </div>
+       </div>
       <!-- /.card -->
     </div>
   </div>

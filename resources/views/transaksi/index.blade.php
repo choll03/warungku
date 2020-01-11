@@ -29,7 +29,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-12">
             <div class="card">
-                <div class="card-header">Buat Transaksi</div>
+                <div class="card-header bg-info">Buat Transaksi</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -54,7 +54,7 @@
         </div>
         <div class="col-md-4 col-12">
             <div class="card">
-                <div class="card-header">Keranjang</div>
+                <div class="card-header bg-info">Keranjang</div>
                 <div class="card-body">
                 {!! Form::open(['route' => 'transaksi.store', 'id' => 'buat_transaksi']) !!}
                     <table class="table" id="t3">
@@ -68,12 +68,12 @@
                         <tbody id="keranjang">
                         </tbody>
                         <tfoot>
-                            <td colspan="2" align="right">Total</td>
-                            <td colspan="2" align="right" id="total"></td>
+                            <td colspan="2" class="hasil">Total</td>
+                            <td colspan="2" class="hasil int" id="total"></td>
                         </tfoot>
                     </table>
                 </div>
-                <input type="submit" value="Beli" class="btn btn-block btn-primary">
+                <input type="submit" value="Beli" class="btn btn-block btn-success">
                 {!! Form::close() !!}
             </div>
         </div>

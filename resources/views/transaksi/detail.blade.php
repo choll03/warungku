@@ -30,24 +30,26 @@
     <div class="col-md-8">
       <!-- Default box -->
       <div class="card">
-                <div class="card-header">Detail Laporan</div>
+                <div class="card-header bg-info">Detail Laporan</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
+            <div class="table-responsive">
+                <div class="col-md-6">
                     <table class="table">
                         <tr>
-                            <td>Nomor Transaksi</td>
-                            <td align="right">{{ $data->no_transaksi }}</td>
+                            <td align="left">Nomor Transaksi</td>
+                            <td align="left">{{ $data->no_transaksi }}</td>
                         </tr>
                         <tr>
-                            <td>Tanggal</td>
-                            <td align="right">{{ $data->created_at->format('d M Y, H:i') }}</td>
+                            <td align="left">Tanggal</td>
+                            <td align="left">{{ $data->created_at->format('d M Y, H:i') }}</td>
                         </tr>
                     </table>
+                </div>
                     <table class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -80,18 +82,20 @@
                             <td align="right">{{ $data->tunai - $total }}</td>
                         </tr>
                     </tfoot>
-                    </table>
                     
+                    </table>
+                    <div class="float-auto">
+                        <!-- <div class="col-md-6 col-10"> -->
+                            <?php echo $barcode ?>
+                        <!-- </div> -->
+                    </div>
+                </div>
                 </div>
                 <div class="card-footer" style="text-align:right">
-                    <button class="btn btn-primary">Print Struk</button>
-                    <button class="btn btn-primary" id="print_preview">Print Preview</button>
+                    <button class="btn btn-info">Print Struk</button>
+                    <button class="btn btn-warning" id="print_preview">Print Preview</button>
                     
-                    <div class="row my-4">
-                        <div class="col-md-4 offset-md-4">
-                            <?php echo $barcode ?>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

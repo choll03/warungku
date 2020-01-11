@@ -37,5 +37,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/barang', 'BarangController');
         Route::get('/laporan', 'TransaksiController@laporan')->name('laporan');
         Route::get('/laporan/transaksi/{id}', 'TransaksiController@laporanShow')->name('laporan.show');
+        Route::get('/laporan_keuntungan', 'TransaksiController@laporanKeuntungan')->name('laporan_keuntungan');
     });
 });

@@ -74,11 +74,20 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3">
-        <div class="info">
-          <a href="#" class="d-block">{{ auth()->user()->warung->nama }}</a>
-        </div>
+        <ul class="nav nav-pills nav-sidebar flex-column" 
+        data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{ route('warung.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+              {{ auth()->user()->warung->nama }}
+              </p>
+            </a>
+          </li>
       </div>
-
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" 
@@ -113,13 +122,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('barang.index') }}" class="nav-link">
+                <a href="{{ route('barang.index') }}" class="nav-link ml-3">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stok</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('barang.create') }}" class="nav-link">
+                <a href="{{ route('barang.create') }}" class="nav-link ml-3">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Barang</p>
                 </a>
@@ -137,13 +146,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('laporan') }}" class="nav-link">
+                <a href="{{ route('laporan') }}" class="nav-link ml-3">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Penjualan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('laporan_keuntungan') }}" class="nav-link ml-3">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Keuntungan</p>
                 </a>
@@ -151,14 +160,14 @@
             </ul>
           </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a  href="{{ route('warung.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-home"></i>
                 <p>
                   Warungku
                 </p>
               </a>
-            </li>
+            </li> -->
       </nav>
       <!-- /.sidebar-menu -->
     </div>

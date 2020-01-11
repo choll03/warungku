@@ -20,7 +20,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header bg-info">
-          <h3 class="card-title">Laporan Penjualan</h3>
+          <h3 class="card-title">Laporan Keuntungan</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -29,12 +29,12 @@
               <i class="fas fa-times"></i></button>
           </div>
         </div>
-            <div class="card-body">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+        <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -42,6 +42,7 @@
                         <th>Tanggal</th>
                         <th>No. Invoice</th>
                         <th>Total</th>
+                        <th>Total Keuntungan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -51,16 +52,22 @@
                         <td>{{ $d->created_at->format("d/m/Y") }}</td>
                         <td>{{ $d->no_transaksi }}</td>
                         <td class="int">{{ $d->total }}</td>
+                        <td class="int">Belom di isi euy gatau kodingannya</td>
                         <td>
-                            <a href="{{ route('laporan.show', $d->id) }}" class="btn btn-info"><i class="fas fa-eye"></i> Detail</a>
+                            <a href="{{ route('laporan.show', $d->id) }}" class="btn btn-info">Detail</a>
                         </td>
                     </tr>
                     @endforeach
+                    <tr class="hasil">
+                        <td colspan="2">JUMLAH</td>
+                        <td>jumlah penjualan</td>
+                        <td>jumlah keuntungan</td>
+                        <td></td>
+                    </tr>
                 </tbody>
                 </table>
-                
             </div>
-            </div>
+        </div>
         <!-- /.card -->
     </div>
   </div>
