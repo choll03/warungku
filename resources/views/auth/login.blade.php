@@ -1,3 +1,4 @@
+
 @extends('layouts.app_auth')
 
 @section('content')

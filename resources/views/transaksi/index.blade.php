@@ -73,7 +73,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <input type="submit" value="Beli" class="btn btn-block btn-primary">
+                <input type="submit" value="Jual" class="btn btn-block btn-primary">
                 {!! Form::close() !!}
             </div>
         </div>

@@ -121,13 +121,16 @@ class TransaksiController extends Controller
 
         try {
             $ip = "127.0.0.1";
+            // $ip = "127.0.0.1";
             $connector = new WindowsPrintConnector("smb://". $ip ."/POS-58");
             $printer = new Printer($connector);
 
             $total = 0;
             /* Date is kept the same for testing */
             // $date = date('l jS \of F Y h:i:s A');
-            $date = Carbon::now()->format("d M Y H:i:s");
+            // date_default_timezone_set('Asia/Jakarta');
+            date_default_timezone_set("Asia/Jakarta");
+            $date = date("d m Y H:i:s");
             
             /* Start the printer */
             // $logo = EscposImage::load("resources/escpos-php.png", false);
@@ -151,7 +154,7 @@ class TransaksiController extends Controller
             $printer->setJustification(Printer::JUSTIFY_LEFT);
             $printer->setEmphasis(true);
             $printer->text(new CoreItem('Nomor', $invoice->no_transaksi));
-            $printer->text(new CoreItem('Nomor', $invoice->created_at->format("d/m/Y")));
+            $printer->text(new CoreItem('Tanggal', $invoice->created_at->format("d/m/Y")));
             $printer->feed();
 
             $printer->setEmphasis(false);

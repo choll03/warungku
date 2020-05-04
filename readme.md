@@ -14,12 +14,6 @@
 
  buat database baru "nama_database"
  
- untuk pengguna windows
-- copy .env-example .env
-
- untuk pengguna linux/mac
-- cp .env-example .env
-
  edit file .env dengan "nama_database", "username" dan "password"
 
  kemudian jalankan perintah artisan berikut
@@ -27,6 +21,6 @@
 - php artisan key:generate
 - php artisan migrate
 
- jika sudah selesai semua jalankan server api
+ jika sudah selesai semua jalankan server
 
 - php artisan serve
